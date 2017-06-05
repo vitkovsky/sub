@@ -10,9 +10,11 @@
 #define SUB_IR_OFF 0xFF9867
 #define FUN_IR_UP 0xFF629D
 #define FUN_IR_DOWN 0xFFA857
+#define BUTTON_OK 0xFF02FD
 
 #define FUN_PWM 5
 #define FUN_ERROR 4
+#define ERROR_SPEAKER 6
 #define FUN_ERROR_POINTS 200
 
 #define SUB_RUN_LOOP_DELAY 10
@@ -38,6 +40,7 @@ void setup() {
   pinMode(SUB_RELEY_1, OUTPUT);
 
   pinMode(FUN_PWM, OUTPUT);
+  pinMode(ERROR_SPEAKER, OUTPUT);
   pinMode(FUN_ERROR, INPUT_PULLUP);
 
   if (IS_DEBUG) {
@@ -86,6 +89,10 @@ void checkIR() {
       }else if (IR.data == FUN_IR_DOWN) {
         setPWM(_fun_pwm - 10);
       }
+
+      if (IR.data == BUTTON_OK) {
+        setFunError(!_fun_Error);
+      }
     }
     if (IR.data == SUB_IR_ON) {
       setOn(true);
@@ -129,12 +136,17 @@ void setPWM(int fun_pwm) {
 
 void setFunError(bool fun_Error) {
   if (_fun_Error != fun_Error) {
+     _fun_Error = fun_Error;
     if (IS_DEBUG) {
       Serial.print("fun_Error: ");
       Serial.println(fun_Error);
+    } 
+    if (_fun_Error) {
+      analogWrite(ERROR_SPEAKER, 7);
+    } else {
+      analogWrite(ERROR_SPEAKER, 0);
     }
   }
-  _fun_Error = fun_Error;
 }
 
 void checkPWMError() {
