@@ -3,5 +3,5 @@ sub + arduino
 
 SUB BOX
 
-<img src="https://github.com/vitkovsky/sub/blob/master/subbox.png" width="90%"/>
+<img src="https://github.com/vitkovsky/sub/blob/master/subbox.png" width="100%"/>
 
