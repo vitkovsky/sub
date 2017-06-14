@@ -7,7 +7,9 @@
 #define SUB_RELEY_1 3
 #define SUB_IR 11
 #define SUB_IR_ON 0xFF6897
+#define SUB_IR_ON_T758 0xE13EA45B
 #define SUB_IR_OFF 0xFF9867
+#define SUB_IR_OFF_T758 0xFF6897
 #define FUN_IR_UP 0xFF629D
 #define FUN_IR_DOWN 0xFFA857
 #define BUTTON_OK 0xFF02FD
@@ -94,9 +96,9 @@ void checkIR() {
         setFunError(!_fun_Error);
       }
     }
-    if (IR.data == SUB_IR_ON) {
+    if (IR.data == SUB_IR_ON || IR.data == SUB_IR_ON_T758) {
       setOn(true);
-    }else if (IR.data == SUB_IR_OFF) {
+    }else if (IR.data == SUB_IR_OFF || IR.data == SUB_IR_OFF_T758) {
       setOn(false);
     }
   }
