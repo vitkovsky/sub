@@ -10,5 +10,5 @@ SUB BOX
 
 SketchUP
 
-<img src="https://github.com/vitkovsky/sub/blob/master/subbox.png" width="100%"/>
+<img src="https://github.com/vitkovsky/sub/blob/master/SketchUP/subbox.png" width="100%"/>
 
