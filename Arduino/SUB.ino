@@ -1,7 +1,7 @@
 
 #include <iarduino_IR_RX.h>
 
-#define IS_DEBUG 1
+#define IS_DEBUG 0
 
 #define SUB_BUTTON 2
 #define SUB_RELEY_1 3
@@ -17,11 +17,11 @@
 #define FUN_PWM 5
 #define FUN_ERROR 4
 #define ERROR_SPEAKER 6
-#define FUN_ERROR_POINTS 200
+#define FUN_ERROR_POINTS 400
 
-#define SUB_RUN_LOOP_DELAY 10
-#define SUB_DELAY_POINT_ON 30
-#define SUB_DELAY_POINT_OVERALL 100
+#define SUB_RUN_LOOP_DELAY 5
+#define SUB_DELAY_POINT_ON 60
+#define SUB_DELAY_POINT_OVERALL 200
 
 
 bool _isOn;
@@ -75,6 +75,10 @@ void loop() {
   }
 
   _counter += _counter == SUB_DELAY_POINT_OVERALL? - SUB_DELAY_POINT_OVERALL + SUB_DELAY_POINT_ON : 1;
+
+  if (_counter > 1000) {
+    _counter = 0;
+  }
   
   delay(SUB_RUN_LOOP_DELAY);
   
